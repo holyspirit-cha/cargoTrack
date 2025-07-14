@@ -1,12 +1,16 @@
-// server.js (수정된 코드) wls
+// server.js (수정된 코드)
 
 // 1. 필요한 라이브러리 불러오기
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); 
 
 // 2. 서버 설정
 const app = express();
-const PORT = 3000;
+// Cloud Run이 제공하는 PORT 환경 변수를 사용하고, 없을 경우 3000번을 기본값으로 사용
+const PORT = process.env.PORT || 3000;
+
+app.use(cors()); 
 
 // 3. 프록시 API 경로 설정
 app.get('/api/lookup', async (req, res) => {
@@ -62,4 +66,3 @@ app.listen(PORT, () => {
   console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
   console.log('웹 브라우저에서 위 주소로 접속하세요.');
 });
-
