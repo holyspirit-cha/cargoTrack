@@ -48,7 +48,7 @@
         <div class="lg:col-span-2">
             <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div class="p-6 sm:p-8">
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">1화물통관 진행정보 조회</h1>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">2화물통관 진행정보 조회</h1>
                     <p class="text-gray-600 mb-6">B/L 번호를 입력하면 Master B/L과 House B/L을 순차적으로 조회합니다.</p>
 
                     <div class="space-y-4">
@@ -280,7 +280,8 @@
         statusDiv.innerHTML = `<div class="p-4 text-sm text-blue-700 bg-blue-100 border border-blue-400 rounded-md">Master B/L로 조회 중...</div>`;
 
         try {
-            const proxyUrlMaster = `/api/lookup?blType=master&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
+            const proxyUrlMaster = `https://cargotrack-108455161908.europe-west1.run.app/api/lookup?blType=master&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
+            //const proxyUrlMaster = `/api/lookup?blType=master&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
             const responseMaster = await fetch(proxyUrlMaster);
             if (!responseMaster.ok) throw new Error(`서버 응답 오류: ${responseMaster.status}`);
             
@@ -295,7 +296,8 @@
             }
 
             statusDiv.innerHTML = `<div class="p-4 text-sm text-blue-700 bg-blue-100 border border-blue-400 rounded-md">Master B/L 정보 없음. House B/L로 조회 중...</div>`;
-            const proxyUrlHouse = `/api/lookup?blType=house&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
+            const proxyUrlHouse = `https://cargotrack-108455161908.europe-west1.run.app/api/lookup?blType=house&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
+            //const proxyUrlHouse = `/api/lookup?blType=house&blNo=${encodeURIComponent(blNo)}&blYear=${encodeURIComponent(blYear)}&apiKey=${encodeURIComponent(apiKey)}`;
             const responseHouse = await fetch(proxyUrlHouse);
             if (!responseHouse.ok) throw new Error(`서버 응답 오류: ${responseHouse.status}`);
             
